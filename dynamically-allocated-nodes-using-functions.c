@@ -36,6 +36,11 @@ void insert_at_tail(node_t **tail, node_t **node_to_insert) {
 	*tail = *node_to_insert;
 }
 
+void insert_after_node(node_t **node, node_t **node_to_insert) {
+	(*node_to_insert)->next = (*node)->next;
+	(*node)->next = *node_to_insert;
+}
+
 node_t *find_node(node_t *head, int value) {
 	node_t *tmp;
 
@@ -73,6 +78,10 @@ int main() {
 		}
 		insert_at_tail(&tail, &tmp);
 	}
+
+	node_t *node = find_node(head, 8);
+	tmp = create_new_node(1008);
+	insert_after_node(&node, &tmp);
 
 	printlist(head);
 
