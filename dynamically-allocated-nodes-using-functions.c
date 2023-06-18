@@ -19,7 +19,7 @@ void printlist(node_t *head) {
 	printf("\n");
 }
 
-node_t *create_new_node(int value){
+node_t *create_new_node(int value) {
 	node_t *result = malloc(sizeof(node_t));
 	result->value = value;
 	result->next = NULL;
@@ -29,6 +29,17 @@ node_t *create_new_node(int value){
 void insert_at_head(node_t **head, node_t **node_to_insert) {
 	(*node_to_insert)->next = *head;
 	*head = *node_to_insert;
+}
+
+node_t *find_node(node_t *head, int value) {
+	node_t *tmp;
+
+	tmp = head;
+	while (tmp) {
+		if (tmp->value == value) return tmp;
+		tmp = tmp->next;
+	}
+	return NULL;
 }
 
 int main() {
@@ -42,6 +53,10 @@ int main() {
 	}
 
 	printlist(head);
+
+	tmp = find_node(head, 3);
+	printf("found node with value of %i\n", tmp->value);
+	
 
 	return 0;	
 }
